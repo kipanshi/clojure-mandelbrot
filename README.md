@@ -1,6 +1,6 @@
 # clojure-mandelbrot
 
-A simple educational project that draws Mandelbrot set into *.ppm image file
+A simple educational project that draws colorful Mandelbrot set into *.ppm image file
 
 ## Installation
 
@@ -17,6 +17,9 @@ To run tests use:
 and to generate `Mandelbrot.ppm` use:
 
     lein run
+
+You can change colorisations by changins constans values in the
+beginning of `core.clj`.
 
 Feel free to play with the code, and also refer to
 `lein` docs if you want to make standalone jar-file.

@@ -1,4 +1,4 @@
-(defproject clojure-mandelbrot "0.1.0-SNAPSHOT"
+(defproject clojure-mandelbrot "0.2.0-SNAPSHOT"
   :description "Mandelbrot Set Drawing Programm"
   :url "http://github.com/kipanshi"
   :license {:name "Eclipse Public License"

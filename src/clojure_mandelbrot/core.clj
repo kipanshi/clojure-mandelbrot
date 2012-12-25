@@ -19,10 +19,14 @@
 (def re-factor (/ (- max-re min-re) (- image-width 1)))
 (def im-factor (/ (- max-im min-im) (- image-height 1)))
 
-(def max-iterations 250)
+(def max-iterations 70)
 
-(def background-pixel '(0 0 32000))
-(def foreground-pixel '(65355 65355 65355))
+;; Foreground and background pixels are those that belong and not belong
+;; to the Mandelbrot set respectively
+(def foreground-pixel '(0 0 0))
+(def background-red-value 5000)
+(def background-green-value 3000)
+(def background-blue-value 0)
 
 (def OUTPUT-FILE "Mandelbrot.ppm")
 
@@ -54,6 +58,15 @@
     )
 )
 
+(defn background-pixel
+  "Calculate the color of background pixel depending on number of iterations"
+  [n]
+  (if (= n max-iterations)
+    (list 0 0 0)
+    (list background-red-value background-green-value
+          (+ background-blue-value (int (* color-depth (/ n max-iterations))))))
+)
+
 (defn process-iteration
   "Process an iteration for the pixel"
   [n c-re c-im z-re z-im]
@@ -63,8 +76,8 @@
       (if (< (+ z-re2 z-im2) 4)
         (process-iteration (inc n) c-re c-im
               (+ c-re (- z-re2 z-im2)) (+ (* 2 z-re z-im) c-im))
-        false)
-      true))
+        (background-pixel n))
+      foreground-pixel))
 )
 
 (defn process-pixel
@@ -73,8 +86,7 @@
   (let [c-re (+ min-re (* x re-factor))
         z-re c-re
         z-im c-im]
-    (if (true? (process-iteration 0 c-re c-im z-re z-im))
-      (write-pixel wrtr foreground-pixel) (write-pixel wrtr background-pixel))
+    (write-pixel wrtr (process-iteration 0 c-re c-im z-re z-im))
 ))
 
 (defn process-y
