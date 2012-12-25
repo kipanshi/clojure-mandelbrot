@@ -7,15 +7,19 @@
 (def image-width 1000)
 (def color-depth 65355)
 
-(def min-re -2.0)
-(def max-re 1.0)
-(def min-im -1.2)
+(def scale-factor 4)
+(def x-offset 1)
+(def y-offset 2)
+
+(def min-re (/ (+ -2.0 x-offset) scale-factor))
+(def max-re (/ (+ 1.0 x-offset) scale-factor))
+(def min-im (/ (+ -1.2 y-offset) scale-factor))
 (def max-im (+ min-im (* (- max-re min-re) (/ image-height image-width))))
 
 (def re-factor (/ (- max-re min-re) (- image-width 1)))
 (def im-factor (/ (- max-im min-im) (- image-height 1)))
 
-(def max-iterations 70)
+(def max-iterations 250)
 
 (def background-pixel '(0 0 32000))
 (def foreground-pixel '(65355 65355 65355))
