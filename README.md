@@ -2,7 +2,7 @@
 
 A simple educational project that draws colorful Mandelbrot set into *.ppm image file
 
-![ScreenShot](https://raw.github.com/kipanshi/clojure-mandelbrot/master/Mandelbrot.jpg)
+![ScreenShot](https://raw.github.com/kipanshi/clojure-mandelbrot/master/Mandelbrot.png)
 
 ## Installation
 
