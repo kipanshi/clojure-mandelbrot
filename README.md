@@ -44,7 +44,9 @@ This will be fixed in future.
 ### Useful links
 
 1) [Mandelbrot Set: wikipedia](http://en.wikipedia.org/wiki/Mandelbrot_set)
+
 2) [Mandelbrot Set explanation with C++ code snippets](http://warp.povusers.org/Mandelbrot/)
+
 3) [Obfurscated Mandelbrot in Python](http://preshing.com/20110926/high-resolution-mandelbrot-in-obfuscated-python)
 
 
