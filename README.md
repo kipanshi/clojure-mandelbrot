@@ -2,6 +2,8 @@
 
 A simple educational project that draws colorful Mandelbrot set into *.ppm image file
 
+![ScreenShot](https://raw.github.com/kipanshi/clojure-mandelbrot/master/Mandelbrot.jpg)
+
 ## Installation
 
 You need to have `lein` installed, [see here](https://github.com/technomancy/leiningen)

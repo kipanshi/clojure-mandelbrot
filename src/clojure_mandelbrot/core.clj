@@ -3,14 +3,30 @@
   (:use clojure.java.io))
 
 ;; CONSTANTS
-(def image-height 1000)
-(def image-width 1000)
+(def OUTPUT-FILE "Mandelbrot.ppm")
+
+(def image-height 3000)
+(def image-width 3000)
 (def color-depth 65355)
+
+;; Foreground and background pixels are those that belong and not belong
+;; to the Mandelbrot set respectively
+(def background-red-value 0)
+(def background-green-value 0)
+(def background-blue-value 0)
+(def foreground-pixel (list background-red-value
+                            background-green-value
+                            color-depth))
 
 (def scale-factor 4)
 (def x-offset 1)
 (def y-offset 2)
 
+(def max-iterations 250)
+
+
+
+;; FUNCTIONS
 (def min-re (/ (+ -2.0 x-offset) scale-factor))
 (def max-re (/ (+ 1.0 x-offset) scale-factor))
 (def min-im (/ (+ -1.2 y-offset) scale-factor))
@@ -19,18 +35,6 @@
 (def re-factor (/ (- max-re min-re) (- image-width 1)))
 (def im-factor (/ (- max-im min-im) (- image-height 1)))
 
-(def max-iterations 70)
-
-;; Foreground and background pixels are those that belong and not belong
-;; to the Mandelbrot set respectively
-(def foreground-pixel '(0 0 0))
-(def background-red-value 5000)
-(def background-green-value 3000)
-(def background-blue-value 0)
-
-(def OUTPUT-FILE "Mandelbrot.ppm")
-
-;; FUNCTIONS
 (defn write-pixel
   "Writes the pixel to the writer. Input is tuple of 3 integers representing RGB"
   [wrtr pixel-tuple]
