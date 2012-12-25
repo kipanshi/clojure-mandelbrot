@@ -3,7 +3,7 @@
   (:use clojure.java.io))
 
 ;; CONSTANTS
-(def image-height 1500)
+(def image-height 1000)
 (def image-width 1000)
 (def color-depth 65355)
 
@@ -15,7 +15,7 @@
 (def re-factor (/ (- max-re min-re) (- image-width 1)))
 (def im-factor (/ (- max-im min-im) (- image-height 1)))
 
-(def max-iterations 100)
+(def max-iterations 70)
 
 (def background-pixel '(0 0 32000))
 (def foreground-pixel '(65355 65355 65355))
@@ -77,7 +77,7 @@
   "Process each row"
   [wrtr y]
   (let [c-im (- max-im (* y im-factor))]
-    (dorun (map (fn [x] (process-pixel wrtr x y c-im)) (range 1 image-width))))
+    (dorun (map (fn [x] (process-pixel wrtr x y c-im)) (range 0 image-width))))
 )
 
 (defn -main
@@ -85,6 +85,6 @@
   [& args]
   (with-open [wrtr (writer OUTPUT-FILE)]
     (write-header wrtr image-width image-height color-depth)
-    (dorun (map (fn [y] (process-y wrtr y)) (range 1 image-height)))
+    (dorun (map (fn [y] (process-y wrtr y)) (range 0 image-height)))
     )
 )
